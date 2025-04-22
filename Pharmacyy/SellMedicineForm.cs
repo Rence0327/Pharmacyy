@@ -14,6 +14,7 @@ namespace PharmacySystem
         {
             InitializeComponent();
             InitializeCartGridView();
+            InitializeCartColumns();
             LoadCustomers();
             LoadMedicines();
         }
