@@ -30,6 +30,23 @@ namespace PharmacySystem
             });
         }
 
+        private void TxtCashAmount_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtCashAmount.Text, out decimal cashAmount))
+            {
+                decimal exchange = cashAmount - totalAmount;
+                lblExchangeValue.Text = exchange.ToString("N2");
+                lblExchangeValue.ForeColor = exchange >= 0 ? Color.Green : Color.Red;
+            }
+            else
+            {
+                lblExchangeValue.Text = "0.00";
+                lblExchangeValue.ForeColor = Color.Green;
+            }
+        }
+
+
+
         private void LoadCustomers()
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -124,17 +141,27 @@ namespace PharmacySystem
 
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
-            if (dgvCart.Rows.Count == 0 || dgvCart.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
+
+            if (!decimal.TryParse(txtCashAmount.Text, out decimal cashAmount))
             {
-                MessageBox.Show("No items in cart");
+                MessageBox.Show("Please enter valid cash amount");
                 return;
             }
 
-            if (cmbCustomers.SelectedValue == null)
+            if (cashAmount < totalAmount)
             {
-                MessageBox.Show("Please select a customer");
+                MessageBox.Show("Cash amount is less than total amount");
                 return;
             }
+
+
+            // Show exchange
+            decimal exchange = cashAmount - totalAmount;
+            MessageBox.Show($"Payment processed! Exchange: {exchange.ToString("N2")}");
+
+            // Reset payment fields
+            txtCashAmount.Text = "";
+            lblExchangeValue.Text = "0.00";
 
             int customerId = (int)cmbCustomers.SelectedValue;
             DateTime purchaseDate = DateTime.Now;

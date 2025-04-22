@@ -40,7 +40,7 @@
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(136, 20);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Pharmacy Login";
+            lblTitle.Text = "Botika ni Aling Nena";
             // 
             // lblUsername
             // 

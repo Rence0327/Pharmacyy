@@ -24,8 +24,13 @@
         private DataGridView dgvCart;
         private Label lblTotal;
         private Label lblTotalAmount;
-        private Button btnCompleteSale;
         private Button btnClose;
+        private GroupBox grpPayment;
+        private Label lblCashAmount;
+        private TextBox txtCashAmount;
+        private Label lblExchange;
+        private Label lblExchangeValue;
+        private Button btnProcessPayment;
 
         protected override void Dispose(bool disposing)
         {
@@ -58,10 +63,16 @@
             dgvCart = new DataGridView();
             lblTotal = new Label();
             lblTotalAmount = new Label();
-            btnCompleteSale = new Button();
             btnClose = new Button();
+            grpPayment = new GroupBox();
+            lblCashAmount = new Label();
+            txtCashAmount = new TextBox();
+            lblExchange = new Label();
+            lblExchangeValue = new Label();
+            btnProcessPayment = new Button();
             grpDiscount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCart).BeginInit();
+            grpPayment.SuspendLayout();
             SuspendLayout();
             // 
             // lblCustomer
@@ -220,46 +231,96 @@
             // lblTotal
             // 
             lblTotal.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            lblTotal.Location = new Point(550, 500);
+            lblTotal.Location = new Point(6, 90);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(100, 23);
+            lblTotal.Size = new Size(110, 23);
             lblTotal.TabIndex = 15;
             lblTotal.Text = "Total Amount:";
             // 
             // lblTotalAmount
             // 
             lblTotalAmount.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            lblTotalAmount.Location = new Point(650, 500);
+            lblTotalAmount.Location = new Point(122, 91);
             lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(100, 20);
+            lblTotalAmount.Size = new Size(42, 20);
             lblTotalAmount.TabIndex = 16;
             lblTotalAmount.Text = "0.00";
             lblTotalAmount.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnCompleteSale
-            // 
-            btnCompleteSale.Location = new Point(550, 530);
-            btnCompleteSale.Name = "btnCompleteSale";
-            btnCompleteSale.Size = new Size(100, 30);
-            btnCompleteSale.TabIndex = 17;
-            btnCompleteSale.Text = "Complete Sale";
-            btnCompleteSale.Click += btnCompleteSale_Click;
-            // 
             // btnClose
             // 
-            btnClose.Location = new Point(660, 530);
+            btnClose.Location = new Point(546, 154);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(100, 30);
+            btnClose.Size = new Size(94, 23);
             btnClose.TabIndex = 18;
             btnClose.Text = "Close";
             btnClose.Click += BtnClose_Click;
             // 
+            // grpPayment
+            // 
+            grpPayment.Controls.Add(lblCashAmount);
+            grpPayment.Controls.Add(txtCashAmount);
+            grpPayment.Controls.Add(lblExchange);
+            grpPayment.Controls.Add(lblExchangeValue);
+            grpPayment.Controls.Add(lblTotal);
+            grpPayment.Controls.Add(lblTotalAmount);
+            grpPayment.Location = new Point(400, 19);
+            grpPayment.Name = "grpPayment";
+            grpPayment.Size = new Size(240, 130);
+            grpPayment.TabIndex = 0;
+            grpPayment.TabStop = false;
+            grpPayment.Text = "Payment";
+            // 
+            // lblCashAmount
+            // 
+            lblCashAmount.Location = new Point(10, 25);
+            lblCashAmount.Name = "lblCashAmount";
+            lblCashAmount.Size = new Size(100, 23);
+            lblCashAmount.TabIndex = 0;
+            lblCashAmount.Text = "Cash Amount:";
+            // 
+            // txtCashAmount
+            // 
+            txtCashAmount.Location = new Point(107, 25);
+            txtCashAmount.Name = "txtCashAmount";
+            txtCashAmount.Size = new Size(120, 23);
+            txtCashAmount.TabIndex = 1;
+            txtCashAmount.TextChanged += TxtCashAmount_TextChanged;
+            // 
+            // lblExchange
+            // 
+            lblExchange.Location = new Point(10, 55);
+            lblExchange.Name = "lblExchange";
+            lblExchange.Size = new Size(100, 23);
+            lblExchange.TabIndex = 2;
+            lblExchange.Text = "Exchange:";
+            // 
+            // lblExchangeValue
+            // 
+            lblExchangeValue.ForeColor = Color.Green;
+            lblExchangeValue.Location = new Point(114, 55);
+            lblExchangeValue.Name = "lblExchangeValue";
+            lblExchangeValue.Size = new Size(113, 23);
+            lblExchangeValue.TabIndex = 3;
+            lblExchangeValue.Text = "0.00";
+            // 
+            // btnProcessPayment
+            // 
+            btnProcessPayment.Location = new Point(400, 155);
+            btnProcessPayment.Name = "btnProcessPayment";
+            btnProcessPayment.Size = new Size(103, 22);
+            btnProcessPayment.TabIndex = 4;
+            btnProcessPayment.Text = "Process Payment";
+            btnProcessPayment.Click += btnCompleteSale_Click;
+            // 
             // SellMedicineForm
             // 
             ClientSize = new Size(800, 600);
+            Controls.Add(grpPayment);
             Controls.Add(lblCustomer);
             Controls.Add(cmbCustomers);
             Controls.Add(lblMedicine);
+            Controls.Add(btnProcessPayment);
             Controls.Add(cmbMedicines);
             Controls.Add(lblGenericName);
             Controls.Add(txtGenericName);
@@ -272,9 +333,6 @@
             Controls.Add(grpDiscount);
             Controls.Add(btnAddToCart);
             Controls.Add(dgvCart);
-            Controls.Add(lblTotal);
-            Controls.Add(lblTotalAmount);
-            Controls.Add(btnCompleteSale);
             Controls.Add(btnClose);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
@@ -283,6 +341,8 @@
             Text = "Sell Medicine";
             grpDiscount.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvCart).EndInit();
+            grpPayment.ResumeLayout(false);
+            grpPayment.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
