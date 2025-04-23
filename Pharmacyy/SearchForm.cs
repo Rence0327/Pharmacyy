@@ -52,7 +52,8 @@ namespace PharmacySystem
                 {
                     connection.Open();
                     string query = @"SELECT * FROM medicines 
-                                   WHERE brand_name LIKE @term 
+                                   WHERE brand_name LIKE @term
+                                   OR id LIKE @term
                                    OR generic_name LIKE @term 
                                    OR use_description LIKE @term";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
@@ -70,26 +71,53 @@ namespace PharmacySystem
             }
         }
 
+
+
         private void btnViewAll_Click(object sender, EventArgs e)
         {
             LoadAllMedicines();
             txtSearchTerm.Clear();
         }
 
-        private void btnSortAsc_Click(object sender, EventArgs e)
+        private void btnSortAscName_Click(object sender, EventArgs e)
         {
+            LoadAllMedicines();
             if (dgvResults.DataSource is DataTable table)
             {
                 table.DefaultView.Sort = "brand_name ASC";
                 dgvResults.DataSource = table.DefaultView;
             }
+            
         }
 
-        private void btnSortDesc_Click(object sender, EventArgs e)
+        private void btnSortDescName_Click(object sender, EventArgs e)
         {
+            LoadAllMedicines();
             if (dgvResults.DataSource is DataTable table)
             {
                 table.DefaultView.Sort = "brand_name DESC";
+                dgvResults.DataSource = table.DefaultView;
+            }
+            
+        }
+
+        private void btnSortAscID_Click(object sender, EventArgs e)
+        {
+            LoadAllMedicines();
+            if (dgvResults.DataSource is DataTable table)
+            {
+                table.DefaultView.Sort = "ID ASC";
+                dgvResults.DataSource = table.DefaultView;
+            }
+            
+        }
+
+        private void btnSortDescID_Click(object sender, EventArgs e)
+        {
+            LoadAllMedicines();
+            if (dgvResults.DataSource is DataTable table)
+            {
+                table.DefaultView.Sort = "ID DESC";
                 dgvResults.DataSource = table.DefaultView;
             }
         }

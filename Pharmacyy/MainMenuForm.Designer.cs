@@ -42,7 +42,7 @@
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(260, 20);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Pharmacy Management System";
+            lblTitle.Text = "Botika ni Aling Nena";
             // 
             // btnAddMedicine
             // 

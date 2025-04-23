@@ -8,8 +8,10 @@
         private System.Windows.Forms.TextBox txtSearchTerm;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnViewAll;
-        private System.Windows.Forms.Button btnSortAsc;
-        private System.Windows.Forms.Button btnSortDesc;
+        private System.Windows.Forms.Button btnSortNameAsc;
+        private System.Windows.Forms.Button btnSortNameDesc;
+        private System.Windows.Forms.Button btnSortIDAsc;
+        private System.Windows.Forms.Button btnSortIDDesc;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblSearch;
 
@@ -22,85 +24,130 @@
 
         private void InitializeComponent()
         {
-            this.dgvResults = new System.Windows.Forms.DataGridView();
-            this.txtSearchTerm = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.btnViewAll = new System.Windows.Forms.Button();
-            this.btnSortAsc = new System.Windows.Forms.Button();
-            this.btnSortDesc = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.lblSearch = new System.Windows.Forms.Label();
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
-            this.SuspendLayout();
-
-            // lblSearch
-            this.lblSearch.Text = "Search Medicines:";
-            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.lblSearch.Location = new System.Drawing.Point(20, 20);
-            this.lblSearch.Size = new System.Drawing.Size(180, 25);
-
-            // txtSearchTerm
-            this.txtSearchTerm.Location = new System.Drawing.Point(200, 20);
-            this.txtSearchTerm.Size = new System.Drawing.Size(300, 27);
-
-            // btnSearch
-            this.btnSearch.Text = "Search";
-            this.btnSearch.Location = new System.Drawing.Point(510, 18);
-            this.btnSearch.Size = new System.Drawing.Size(80, 30);
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-
-            // btnViewAll
-            this.btnViewAll.Text = "View All";
-            this.btnViewAll.Location = new System.Drawing.Point(600, 18);
-            this.btnViewAll.Size = new System.Drawing.Size(80, 30);
-            this.btnViewAll.Click += new System.EventHandler(this.btnViewAll_Click);
-
+            dgvResults = new DataGridView();
+            txtSearchTerm = new TextBox();
+            btnSearch = new Button();
+            btnViewAll = new Button();
+            btnSortNameAsc = new Button();
+            btnSortNameDesc = new Button();
+            btnSortIDAsc = new Button();
+            btnSortIDDesc = new Button();
+            btnClose = new Button();
+            lblSearch = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvResults).BeginInit();
+            SuspendLayout();
+            // 
             // dgvResults
-            this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResults.Location = new System.Drawing.Point(20, 60);
-            this.dgvResults.Size = new System.Drawing.Size(760, 300);
-            this.dgvResults.ReadOnly = true;
-            this.dgvResults.AllowUserToAddRows = false;
-            this.dgvResults.AllowUserToDeleteRows = false;
-            this.dgvResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-
-            // btnSortAsc
-            this.btnSortAsc.Text = "Sort A-Z";
-            this.btnSortAsc.Location = new System.Drawing.Point(20, 370);
-            this.btnSortAsc.Size = new System.Drawing.Size(90, 30);
-            this.btnSortAsc.Click += new System.EventHandler(this.btnSortAsc_Click);
-
-            // btnSortDesc
-            this.btnSortDesc.Text = "Sort Z-A";
-            this.btnSortDesc.Location = new System.Drawing.Point(120, 370);
-            this.btnSortDesc.Size = new System.Drawing.Size(90, 30);
-            this.btnSortDesc.Click += new System.EventHandler(this.btnSortDesc_Click);
-
+            // 
+            dgvResults.AllowUserToAddRows = false;
+            dgvResults.AllowUserToDeleteRows = false;
+            dgvResults.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvResults.Location = new Point(20, 54);
+            dgvResults.Name = "dgvResults";
+            dgvResults.ReadOnly = true;
+            dgvResults.Size = new Size(760, 300);
+            dgvResults.TabIndex = 4;
+            // 
+            // txtSearchTerm
+            // 
+            txtSearchTerm.Location = new Point(200, 20);
+            txtSearchTerm.Name = "txtSearchTerm";
+            txtSearchTerm.Size = new Size(300, 23);
+            txtSearchTerm.TabIndex = 1;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Location = new Point(510, 18);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(80, 30);
+            btnSearch.TabIndex = 2;
+            btnSearch.Text = "Search";
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // btnViewAll
+            // 
+            btnViewAll.Location = new Point(600, 18);
+            btnViewAll.Name = "btnViewAll";
+            btnViewAll.Size = new Size(80, 30);
+            btnViewAll.TabIndex = 3;
+            btnViewAll.Text = "View All";
+            btnViewAll.Click += btnViewAll_Click;
+            // 
+            // btnSortNameAsc
+            // 
+            btnSortNameAsc.Location = new Point(20, 370);
+            btnSortNameAsc.Name = "btnSortNameAsc";
+            btnSortNameAsc.Size = new Size(90, 30);
+            btnSortNameAsc.TabIndex = 7;
+            btnSortNameAsc.Text = "Sort A-Z";
+            btnSortNameAsc.Click += btnSortAscName_Click;
+            // 
+            // btnSortNameDesc
+            // 
+            btnSortNameDesc.Location = new Point(120, 370);
+            btnSortNameDesc.Name = "btnSortNameDesc";
+            btnSortNameDesc.Size = new Size(90, 30);
+            btnSortNameDesc.TabIndex = 8;
+            btnSortNameDesc.Text = "Sort Z-A";
+            btnSortNameDesc.Click += btnSortDescName_Click;
+            // 
+            // btnSortIDAsc
+            // 
+            btnSortIDAsc.Location = new Point(216, 370);
+            btnSortIDAsc.Name = "btnSortIDAsc";
+            btnSortIDAsc.Size = new Size(90, 30);
+            btnSortIDAsc.TabIndex = 5;
+            btnSortIDAsc.Text = "Sort First-Last";
+            btnSortIDAsc.Click += btnSortAscID_Click;
+            // 
+            // btnSortIDDesc
+            // 
+            btnSortIDDesc.Location = new Point(312, 370);
+            btnSortIDDesc.Name = "btnSortIDDesc";
+            btnSortIDDesc.Size = new Size(90, 30);
+            btnSortIDDesc.TabIndex = 6;
+            btnSortIDDesc.Text = "Sort Last-First";
+            btnSortIDDesc.Click += btnSortDescID_Click;
+            // 
             // btnClose
-            this.btnClose.Text = "Close";
-            this.btnClose.Location = new System.Drawing.Point(680, 370);
-            this.btnClose.Size = new System.Drawing.Size(100, 30);
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-
+            // 
+            btnClose.Location = new Point(680, 370);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(100, 30);
+            btnClose.TabIndex = 9;
+            btnClose.Text = "Close";
+            btnClose.Click += btnClose_Click;
+            // 
+            // lblSearch
+            // 
+            lblSearch.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblSearch.Location = new Point(20, 20);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(180, 25);
+            lblSearch.TabIndex = 0;
+            lblSearch.Text = "Search Medicines:";
+            // 
             // SearchForm
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.ClientSize = new System.Drawing.Size(800, 420);
-            this.Controls.Add(this.lblSearch);
-            this.Controls.Add(this.txtSearchTerm);
-            this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.btnViewAll);
-            this.Controls.Add(this.dgvResults);
-            this.Controls.Add(this.btnSortAsc);
-            this.Controls.Add(this.btnSortDesc);
-            this.Controls.Add(this.btnClose);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Search Medicines";
-
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            ClientSize = new Size(800, 420);
+            Controls.Add(lblSearch);
+            Controls.Add(txtSearchTerm);
+            Controls.Add(btnSearch);
+            Controls.Add(btnViewAll);
+            Controls.Add(dgvResults);
+            Controls.Add(btnSortIDAsc);
+            Controls.Add(btnSortIDDesc);
+            Controls.Add(btnSortNameAsc);
+            Controls.Add(btnSortNameDesc);
+            Controls.Add(btnClose);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Name = "SearchForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Search Medicines";
+            ((System.ComponentModel.ISupportInitialize)dgvResults).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

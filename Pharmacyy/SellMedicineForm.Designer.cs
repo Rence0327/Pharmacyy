@@ -240,9 +240,9 @@
             // lblTotalAmount
             // 
             lblTotalAmount.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Bold);
-            lblTotalAmount.Location = new Point(122, 91);
+            lblTotalAmount.Location = new Point(122, 88);
             lblTotalAmount.Name = "lblTotalAmount";
-            lblTotalAmount.Size = new Size(42, 20);
+            lblTotalAmount.Size = new Size(64, 20);
             lblTotalAmount.TabIndex = 16;
             lblTotalAmount.Text = "0.00";
             lblTotalAmount.TextAlign = ContentAlignment.MiddleRight;
@@ -281,7 +281,7 @@
             // 
             // txtCashAmount
             // 
-            txtCashAmount.Location = new Point(107, 25);
+            txtCashAmount.Location = new Point(114, 25);
             txtCashAmount.Name = "txtCashAmount";
             txtCashAmount.Size = new Size(120, 23);
             txtCashAmount.TabIndex = 1;
@@ -298,7 +298,7 @@
             // lblExchangeValue
             // 
             lblExchangeValue.ForeColor = Color.Green;
-            lblExchangeValue.Location = new Point(114, 55);
+            lblExchangeValue.Location = new Point(116, 55);
             lblExchangeValue.Name = "lblExchangeValue";
             lblExchangeValue.Size = new Size(113, 23);
             lblExchangeValue.TabIndex = 3;

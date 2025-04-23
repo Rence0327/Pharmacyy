@@ -31,7 +31,7 @@ namespace PharmacySystem
                                JOIN medicines m ON p.medicine_id = m.id
                                JOIN tblsales s ON p.purchase_id = s.purchase_id
                                WHERE p.purchase_date BETWEEN @from AND @to
-                               ORDER BY p.purchase_date DESC";
+                               ORDER BY p.purchase_date ASC";
 
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@from", dtpFrom.Value.Date);

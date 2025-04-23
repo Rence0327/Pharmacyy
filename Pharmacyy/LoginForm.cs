@@ -9,7 +9,7 @@ namespace PharmacySystem
     public partial class LoginForm : Form
     {
         private string connectionString = "Server=localhost;Database=dbmeds;Uid=root;Pwd=neko;";
-
+        private const string EncryptionKey = "Your32ByteSecretKey1234567890123456";
         public LoginForm()
         {
             InitializeComponent();
@@ -32,10 +32,14 @@ namespace PharmacySystem
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT * FROM users WHERE username = @username AND password = @password";
+                    string query = @"SELECT * FROM users 
+                                   WHERE username = AES_ENCRYPT(@username, @encKey) 
+                                   AND password = AES_ENCRYPT(@password, @encKey)";
+
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@encKey", EncryptionKey);
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -56,6 +60,12 @@ namespace PharmacySystem
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.ShowDialog();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

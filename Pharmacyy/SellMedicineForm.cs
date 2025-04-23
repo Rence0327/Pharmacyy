@@ -142,18 +142,30 @@ namespace PharmacySystem
         private void btnCompleteSale_Click(object sender, EventArgs e)
         {
 
+            if (dgvCart.Rows.Count == 0 || dgvCart.Rows.Count == 1 && dgvCart.Rows[0].IsNewRow)
+            {
+                MessageBox.Show("Cannot complete sale: Your cart is empty.", "Empty Cart",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Rest of your existing validation code
             if (!decimal.TryParse(txtCashAmount.Text, out decimal cashAmount))
             {
                 MessageBox.Show("Please enter valid cash amount");
                 return;
             }
 
-            if (cashAmount < totalAmount)
+            if (cashAmount <= 0)
             {
-                MessageBox.Show("Cash amount is less than total amount");
+                MessageBox.Show("Cash amount must be greater than 0.");
                 return;
             }
-
+            else if (cashAmount < totalAmount)
+            {
+                MessageBox.Show("Cash amount is less than the total amount due.");
+                return;
+            }
 
             // Show exchange
             decimal exchange = cashAmount - totalAmount;
